@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="checkbox_top">6dp</dimen>
+    <dimen name="checkbox_side">-7dp</dimen>
+    <dimen name="default_content_padding">16dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="touchable_item_min_dimension">48dp</dimen>
+
+    <dimen name="text_size_regular">16sp</dimen>
+    <dimen name="text_size_subtext">14sp</dimen>
+
+</resources>

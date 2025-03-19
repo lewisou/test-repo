@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Theme Colors -->
+    <color name="colorPrimary">#00afe9</color>
+    <color name="colorPrimaryDark">#009dd1</color>
+    <color name="colorSecondary">#009dd1</color>
+    <color name="colorSecondaryDark">#009dd1</color>
+    <color name="colorAccent">#3ADCF6</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <!-- Text colors -->
+    <color name="text_regular">#1F3D59</color>
+    <color name="text_subtext">#84A1BB</color>
+    <color name="text_title_subtext">#CCFFFFFF</color>
+
+</resources>

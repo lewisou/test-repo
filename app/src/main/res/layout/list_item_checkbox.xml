@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatCheckBox
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/checkbox"
+    android:layout_width="@dimen/touchable_item_min_dimension"
+    android:layout_height="@dimen/touchable_item_min_dimension"
+    android:background="@null"
+    android:gravity="center"
+    android:clickable="false"
+    android:focusable="false" />
