@@ -1,4 +1,4 @@
-package co.nz.tsb.interview.bankrecmatchmaker
+package co.nz.tsb.interview.bankrecmatchmaker.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Checkable
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatCheckBox
+import co.nz.tsb.interview.bankrecmatchmaker.R
 
 class CheckedListItem : LinearLayout, Checkable {
     private var checkBox: AppCompatCheckBox? = null
@@ -27,7 +28,6 @@ class CheckedListItem : LinearLayout, Checkable {
         orientation = HORIZONTAL
         checkBox = layoutInflater.inflate(R.layout.list_item_checkbox, this, false) as AppCompatCheckBox
         addView(checkBox, 0)
-        setOnClickListener { checkBox!!.toggle() }
     }
 
     override fun setChecked(checked: Boolean) {

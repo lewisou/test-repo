@@ -1,4 +1,4 @@
-package co.nz.tsb.interview.bankrecmatchmaker;
+package co.nz.tsb.interview.bankrecmatchmaker.core;
 
 public class MatchItem {
 
@@ -6,7 +6,6 @@ public class MatchItem {
     private final String transactionDate;
     private final float total;
     private final String docType;
-
 
     public MatchItem(String paidTo, String transactionDate, float total, String docType) {
         this.paidTo = paidTo;
