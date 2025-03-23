@@ -232,7 +232,7 @@ class MatchViewModelTest {
 
     @Test
     fun `selectItem() failed to work with a special dataset with precision issues`() = runTest {
-        val testData = PRECISION_PROBLEM_DATASET
+        val testData = MOCK_DATA_PRECISION_ISSUES
 
         `when`(repository.getRecords()).thenReturn(testData)
 
@@ -254,6 +254,26 @@ class MatchViewModelTest {
             .isEqualTo(testData.indices.drop(1).dropLast(1).toSet())
     }
 
+    @Test
+    fun `hints should still work when the remain is negative`() = runTest {
+        val testData = MOCK_DATA_NEGATIVE_NUMBERS
+
+        `when`(repository.getRecords()).thenReturn(testData)
+
+        val total = testData.map { it.total }.sum().toDouble()
+        viewModel.init(total)
+
+        advanceUntilIdle()
+
+        // Select the first item as the second one is negative
+        viewModel.selectItem(0, true)
+
+        advanceUntilIdle()
+
+        assertThat(viewModel.liveHints.value)
+            .isEqualTo(testData.indices.drop(1).toSet())
+    }
+
     companion object {
         private val MOCK_DATA_ITEMS_2 = listOf(
             MatchItem(
@@ -270,7 +290,22 @@ class MatchViewModelTest {
             )
         )
 
-        private val PRECISION_PROBLEM_DATASET = listOf(
+        private val MOCK_DATA_NEGATIVE_NUMBERS = listOf(
+            MatchItem(
+                "MCO Cleaning Services",
+                "17 Sep",
+                170.00f,
+                "Sales Invoice"
+            ),
+            MatchItem(
+                "Ridgeway University",
+                "12 Sep",
+                -20.00f,
+                "Sales Invoice"
+            ),
+        )
+
+        private val MOCK_DATA_PRECISION_ISSUES = listOf(
             MatchItem(
                 "MCO Cleaning Services",
                 "17 Sep",
