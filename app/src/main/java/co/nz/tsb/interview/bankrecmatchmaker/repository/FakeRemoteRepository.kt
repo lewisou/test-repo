@@ -91,7 +91,7 @@ class FakeRemoteRepository : Repository {
                 MatchItem(
                     "Gateway Motors",
                     "18 Sep",
-                    411.35f,
+                    1411.35f,
                     "Sales Invoice"
                 )
             )

@@ -20,6 +20,7 @@ internal class MatchViewModel @Inject constructor(
     private val computingDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
+    // LiveData is used because the activity is based in Java.
     private val _liveRemain = MutableLiveData<Double>()
     val liveRemain : LiveData<Double> = _liveRemain
 

@@ -52,7 +52,10 @@ public class FindMatchActivity extends AppCompatActivity {
         viewModel.getLiveHints().observe(this, this::updateHints);
 
         viewModel.init(
-            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 1147.6f)
+            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 970.25f)
+//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 2140.35f)
+
+//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 495.0f)
         );
     }
 
@@ -68,7 +71,7 @@ public class FindMatchActivity extends AppCompatActivity {
     }
 
     private void updateRemain(double remain) {
-        binding.matchText.setText(getString(R.string.select_matches, (int) remain));
+        binding.matchText.setText(getString(R.string.select_matches, remain));
     }
 
     private void updateSelection(Set<Integer> indexes) {

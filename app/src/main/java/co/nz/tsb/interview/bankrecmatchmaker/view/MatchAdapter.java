@@ -1,13 +1,13 @@
 package co.nz.tsb.interview.bankrecmatchmaker.view;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Checkable;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +18,9 @@ import co.nz.tsb.interview.bankrecmatchmaker.core.MatchItem;
 import co.nz.tsb.interview.bankrecmatchmaker.core.Utils;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> {
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ListItemMatchBinding binding;
         public ViewHolder(ListItemMatchBinding binding) {
@@ -27,15 +30,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
         public void bind(MatchItem matchItem, boolean selected, boolean hinted) {
             binding.textMain.setText(matchItem.getPaidTo());
-            binding.textTotal.setText(Float.toString(matchItem.getTotal()));
+            binding.textTotal.setText(decimalFormat.format(matchItem.getTotal()));
             binding.textSubLeft.setText(matchItem.getTransactionDate());
             binding.textSubRight.setText(matchItem.getDocType());
             binding.getRoot().setChecked(selected);
-            if(hinted) {
-                binding.getRoot().setBackgroundColor(Color.CYAN);
-            } else {
-                binding.getRoot().setBackgroundColor(Color.WHITE);
-            }
+            binding.getRoot().setHighlight(hinted);
         }
     }
 
@@ -108,7 +107,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         Set<Integer> changes = Utils.Companion.findDifference(this.hints, hints);
 
         this.hints = hints;
-        
+
         for(int idx : changes) {
             notifyItemChanged(idx);
         }

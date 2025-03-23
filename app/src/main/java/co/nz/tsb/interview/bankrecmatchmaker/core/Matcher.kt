@@ -1,7 +1,5 @@
 package co.nz.tsb.interview.bankrecmatchmaker.core
 
-import android.util.Log
-import kotlin.math.round
 import kotlin.math.roundToLong
 
 /**
@@ -65,6 +63,6 @@ internal class Matcher(
     }
 
     companion object {
-        const val PRECISION = 1000.0
+        const val PRECISION = 100.0
     }
 }

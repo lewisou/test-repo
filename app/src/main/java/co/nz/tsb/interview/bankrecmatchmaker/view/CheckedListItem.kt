@@ -1,6 +1,7 @@
 package co.nz.tsb.interview.bankrecmatchmaker.view
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Checkable
@@ -41,4 +42,14 @@ class CheckedListItem : LinearLayout, Checkable {
     override fun toggle() {
         checkBox!!.toggle()
     }
+
+    var highlight : Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                setBackgroundColor(Color.CYAN)
+            } else {
+                setBackgroundColor(Color.WHITE)
+            }
+        }
 }
