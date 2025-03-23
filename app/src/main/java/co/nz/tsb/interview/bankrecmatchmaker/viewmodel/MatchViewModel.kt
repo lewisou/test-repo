@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.math.abs
 
 @HiltViewModel
 internal class MatchViewModel @Inject constructor(
@@ -76,7 +77,7 @@ internal class MatchViewModel @Inject constructor(
         _liveHints.value = setOf()
 
         // no hints when remain reaches 0
-        if(remain < 0.0001) {
+        if(abs(remain) < 0.0001) {
             return
         }
 
