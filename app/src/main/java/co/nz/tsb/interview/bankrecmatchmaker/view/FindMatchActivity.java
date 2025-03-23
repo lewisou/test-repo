@@ -51,11 +51,12 @@ public class FindMatchActivity extends AppCompatActivity {
 
         viewModel.getLiveHints().observe(this, this::updateHints);
 
-        viewModel.init(
-            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 970.25f)
-//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 2140.35f)
+        viewModel.getLiveAutoSelection().observe(this, this::scrollTo);
 
-//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 495.0f)
+        viewModel.init(
+//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 970.25f)
+//            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 2140.35f)
+            getIntent().getFloatExtra(TARGET_MATCH_VALUE, 618.5f)
         );
     }
 
@@ -82,5 +83,9 @@ public class FindMatchActivity extends AppCompatActivity {
     private void updateHints(Set<Integer> indexes) {
         ((MatchAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter()))
                 .updateHints(indexes);
+    }
+
+    private void scrollTo(int index) {
+        Objects.requireNonNull(binding.recyclerView).scrollToPosition(index);
     }
 }

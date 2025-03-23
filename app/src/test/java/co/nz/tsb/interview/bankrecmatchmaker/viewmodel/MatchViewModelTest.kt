@@ -62,7 +62,7 @@ class MatchViewModelTest {
     }
 
     @Test
-    fun `init() selects an exact match`() = runTest {
+    fun `init() reports an exact match`() = runTest {
         val testData = MOCK_DATA_ITEMS_2
 
         `when`(repository.getRecords()).thenReturn(testData)
@@ -72,6 +72,19 @@ class MatchViewModelTest {
         advanceUntilIdle() // Run all coroutines immediately
 
         assertThat(viewModel.liveSelection.value).isEqualTo(setOf(1))
+    }
+
+    @Test
+    fun `init() reports an auto-selection`() = runTest {
+        val testData = MOCK_DATA_ITEMS_2
+
+        `when`(repository.getRecords()).thenReturn(testData)
+
+        viewModel.init(testData.last().total.toDouble())
+
+        advanceUntilIdle()
+
+        assertThat(viewModel.liveAutoSelection.value).isEqualTo(testData.size - 1)
     }
 
     @Test
@@ -88,6 +101,24 @@ class MatchViewModelTest {
         advanceUntilIdle()
 
         assertThat(viewModel.liveRemain.value).isEqualTo(total)
+    }
+
+    @Test
+    fun `init() provides hints when multiple records match`() = runTest {
+        val testData = MOCK_DATA_ITEMS_2
+
+        `when`(repository.getRecords()).thenReturn(testData)
+
+        // The total is the sum of two records.
+        // When one record is selected, the other should be hinted.
+        val total = testData.map { it.total }.sum().toDouble()
+        viewModel.init(total)
+
+        // Insure the records are loaded
+        advanceUntilIdle()
+
+        assertThat(viewModel.liveHints.value)
+            .isEqualTo(setOf(0, 1))
     }
 
     @Test
@@ -135,25 +166,7 @@ class MatchViewModelTest {
     }
 
     @Test
-    fun `init() provides hints when multiple records match`() = runTest {
-        val testData = MOCK_DATA_ITEMS_2
-
-        `when`(repository.getRecords()).thenReturn(testData)
-
-        // The total is the sum of two records.
-        // When one record is selected, the other should be hinted.
-        val total = testData.map { it.total }.sum().toDouble()
-        viewModel.init(total)
-
-        // Insure the records are loaded
-        advanceUntilIdle()
-
-        assertThat(viewModel.liveHints.value)
-            .isEqualTo(setOf(0, 1))
-    }
-
-    @Test
-    fun `selectItem() correctly selects the items`() = runTest {
+    fun `selectItem() reports the selected items`() = runTest {
         val testData = MOCK_DATA_ITEMS_2
 
         `when`(repository.getRecords()).thenReturn(testData)
@@ -172,7 +185,7 @@ class MatchViewModelTest {
     }
 
     @Test
-    fun `selectItem() deselects the item when already selected`() = runTest {
+    fun `selectItem() reports the unselected items`() = runTest {
         val testData = MOCK_DATA_ITEMS_2
 
         `when`(repository.getRecords()).thenReturn(testData)
@@ -195,7 +208,7 @@ class MatchViewModelTest {
     }
 
     @Test
-    fun `selectItem() no hints are given when the remain reaches 0`() = runTest {
+    fun `selectItem() no hints should be given when the remain reaches 0`() = runTest {
         val testData = MOCK_DATA_ITEMS_2
 
         `when`(repository.getRecords()).thenReturn(testData)

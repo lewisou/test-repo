@@ -33,6 +33,9 @@ internal class MatchViewModel @Inject constructor(
     private val _liveRecords = MutableLiveData<List<MatchItem>>()
     val liveRecords : LiveData<List<MatchItem>> = _liveRecords
 
+    private val _liveAutoSelection = MutableLiveData<Int>()
+    val liveAutoSelection : LiveData<Int> = _liveAutoSelection
+
     private var total: Double = 0.0
     private val selectedRecords: MutableSet<Int> = mutableSetOf()
 
@@ -88,6 +91,7 @@ internal class MatchViewModel @Inject constructor(
         matcher.firstMatch()?.let {
             if(autoSelect) {
                 selectItem(it, true)
+                _liveAutoSelection.value = it
             } else {
                 _liveHints.value = setOf(it)
             }
