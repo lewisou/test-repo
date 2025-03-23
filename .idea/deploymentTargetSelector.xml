@@ -8,7 +8,7 @@
       <SelectionState runConfigName="Tests in 'co.nz.tsb.interview.bankrecmatchmaker'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="selected_items_should_not_be_highlighted()">
+      <SelectionState runConfigName="scroll_to_the_auto_selected_item()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

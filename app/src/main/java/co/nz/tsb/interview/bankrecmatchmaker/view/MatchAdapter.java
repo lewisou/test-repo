@@ -48,7 +48,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
     private Set<Integer> hints = new HashSet<>();
 
-    private OnItemClickedListener itemClickedListener;
+    private final OnItemClickedListener itemClickedListener;
 
     public MatchAdapter(OnItemClickedListener listener) {
         itemClickedListener = listener;

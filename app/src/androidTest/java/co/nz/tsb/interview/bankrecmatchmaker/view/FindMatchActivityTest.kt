@@ -162,6 +162,17 @@ class FindMatchActivityTest {
         ).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun scroll_to_the_auto_selected_item() {
+        // Match and auto-select the last item.
+        // Ensure the view scrolls to display the last item.
+        launchWithTotal(records.last().total)
+
+        onView(
+            withText(containsString(records.last().paidTo)),
+        ).check(matches(isDisplayed()))
+    }
+
     private fun launchWithTotal(total: Float) {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
